@@ -1,20 +1,26 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+public class ClientResponseDTO {
 
-public class ClientCreatDTO {
-
-    @NotBlank
+    private Long id;
     private String name;
-
-    @NotBlank
-    @Email
     private String email;
 
-    public ClientCreatDTO(String name, String email) {
+    public ClientResponseDTO() {
+    }
+
+    public ClientResponseDTO(Long id, String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,4 +38,5 @@ public class ClientCreatDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

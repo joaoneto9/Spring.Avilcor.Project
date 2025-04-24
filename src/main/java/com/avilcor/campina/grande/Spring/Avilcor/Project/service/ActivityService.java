@@ -1,6 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.service;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.ActivityIdDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ public class ActivityService {
     @Autowired
     private ActivityRepository activityRepository;
 
-    public Activity toEntity(ActivityIdDTO activityIdDTO) {
+    public Activity toEntity(ActivityRequestIdDTO activityIdDTO) {
         if (activityRepository.findById(activityIdDTO.getId()).isEmpty())
             return null;
 

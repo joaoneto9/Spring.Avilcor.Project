@@ -1,18 +1,20 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response;
+
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ActivityRequestIdDTO;
 
 import java.util.List;
 
 public class OrderResponseDTO {
 
     private Long id;
-    private List<ActivityIdDTO> serviceIdDTOS;
+    private List<ActivityRequestIdDTO> serviceIdDTOS;
     private ClientResponseDTO clientResponseDTO;
 
     public OrderResponseDTO() {
 
     }
 
-    public OrderResponseDTO(ClientResponseDTO clientResponseDTO, Long id, List<ActivityIdDTO> serviceIdDTOS) {
+    public OrderResponseDTO(ClientResponseDTO clientResponseDTO, Long id, List<ActivityRequestIdDTO> serviceIdDTOS) {
         this.clientResponseDTO = clientResponseDTO;
         this.id = id;
         this.serviceIdDTOS = serviceIdDTOS;
@@ -34,11 +36,11 @@ public class OrderResponseDTO {
         this.id = id;
     }
 
-    public List<ActivityIdDTO> getServiceIdDTOS() {
+    public List<ActivityRequestIdDTO> getServiceIdDTOS() {
         return serviceIdDTOS;
     }
 
-    public void setServiceIdDTOS(List<ActivityIdDTO> serviceIdDTOS) {
+    public void setServiceIdDTOS(List<ActivityRequestIdDTO> serviceIdDTOS) {
         this.serviceIdDTOS = serviceIdDTOS;
     }
 }

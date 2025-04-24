@@ -1,22 +1,22 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Client;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public class OrderCreateDTO {
+public class OrderRequestDTO {
 
     @NotNull
     private Client client;
     @NotNull
-    private List<ActivityIdDTO> services;
+    private List<ActivityRequestIdDTO> services;
 
-    public OrderCreateDTO() {
+    public OrderRequestDTO() {
 
     }
 
-    public OrderCreateDTO(Client client, List<ActivityIdDTO> services) {
+    public OrderRequestDTO(Client client, List<ActivityRequestIdDTO> services) {
         this.client = client;
         this.services = services;
     }
@@ -29,11 +29,11 @@ public class OrderCreateDTO {
         this.client = client;
     }
 
-    public List<ActivityIdDTO> getServices() {
+    public List<ActivityRequestIdDTO> getServices() {
         return services;
     }
 
-    public void setServices(List<ActivityIdDTO> services) {
+    public void setServices(List<ActivityRequestIdDTO> services) {
         this.services = services;
     }
 }

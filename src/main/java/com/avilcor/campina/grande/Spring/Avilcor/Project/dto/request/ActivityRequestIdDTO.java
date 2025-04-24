@@ -1,17 +1,17 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 
-public class ActivityIdDTO {
+public class ActivityRequestIdDTO {
 
     @NotNull
     private Long id;
 
-    public ActivityIdDTO() {
+    public ActivityRequestIdDTO() {
 
     }
 
-    public ActivityIdDTO(Long id) {
+    public ActivityRequestIdDTO(Long id) {
         this.id = id;
     }
 

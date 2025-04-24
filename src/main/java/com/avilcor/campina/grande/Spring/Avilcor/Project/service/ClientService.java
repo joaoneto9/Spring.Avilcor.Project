@@ -1,9 +1,13 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.service;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.ClientResponseDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ClientRequestDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response.ClientResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.mapper.ClientMapper;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Client;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,5 +20,13 @@ public class ClientService {
 
     public List<ClientResponseDTO> findAll() {
         return clientRepository.findAll().stream().map(ClientMapper::toResponse).toList();
+    }
+
+    public ResponseEntity<String> save(ClientRequestDTO clientRequestDTO) {
+        if (clientRepository.findByEmail(clientRequestDTO.getEmail()).isPresent())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Client alredy exists");
+
+        clientRepository.save(ClientMapper.toEntity(clientRequestDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body("Client has been created");
     }
 }

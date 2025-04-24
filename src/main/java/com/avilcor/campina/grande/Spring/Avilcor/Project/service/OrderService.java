@@ -1,8 +1,7 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.service;
 
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.OrderResponseDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.mapper.ClientMapper;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response.OrderResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.mapper.OrderMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

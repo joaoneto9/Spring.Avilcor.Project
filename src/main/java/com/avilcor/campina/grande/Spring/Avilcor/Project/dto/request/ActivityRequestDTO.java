@@ -1,4 +1,4 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Roupa;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Trabalho;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ActivityCreateDTO {
+public class ActivityRequestDTO {
 
     @NotNull
     private Integer roupa;
@@ -17,11 +17,11 @@ public class ActivityCreateDTO {
     @NotNull
     private BigDecimal preco;
 
-    public ActivityCreateDTO() {
+    public ActivityRequestDTO() {
 
     }
 
-    public ActivityCreateDTO(BigDecimal preco, Roupa roupa, Trabalho trabalho) {
+    public ActivityRequestDTO(BigDecimal preco, Roupa roupa, Trabalho trabalho) {
         this.preco = preco;
         setRoupa(roupa);
         setTrabalho(trabalho);
