@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "tb_Client")
-public class Client {
+public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

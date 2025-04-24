@@ -3,14 +3,13 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-import java.security.Provider;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.math.BigDecimal;;
 import java.util.List;
 
 @Entity
 @Table(name = "tb_Order")
-public class Order {
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,9 +21,9 @@ public class Order {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne
+    @OneToMany
     @JsonIgnore
-    private List<Service> services;
+    private List<Activity> services;
 
     private BigDecimal valorTotal;
 
@@ -32,7 +31,7 @@ public class Order {
 
     }
 
-    public Order(Long id, Client client, List<Service> services, BigDecimal valorTotal) {
+    public Order(Long id, Client client, List<Activity> services, BigDecimal valorTotal) {
         this.client = client;
         this.id = id;
         this.valorTotal = valorTotal;
@@ -54,11 +53,11 @@ public class Order {
         this.id = id;
     }
 
-    public List<Service> getServices() {
+    public List<Activity> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<Activity> services) {
         this.services = services;
     }
 

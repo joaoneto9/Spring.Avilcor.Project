@@ -2,16 +2,16 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
 
 import jakarta.validation.constraints.NotNull;
 
-public class ServiceIdDTO {
+public class ActivityIdDTO {
 
     @NotNull
     private Long id;
 
-    public ServiceIdDTO() {
+    public ActivityIdDTO() {
 
     }
 
-    public ServiceIdDTO(Long id) {
+    public ActivityIdDTO(Long id) {
         this.id = id;
     }
 

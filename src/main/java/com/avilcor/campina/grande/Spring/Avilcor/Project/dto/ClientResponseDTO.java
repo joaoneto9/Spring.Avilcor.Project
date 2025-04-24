@@ -1,5 +1,7 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 public class ClientResponseDTO {
@@ -7,20 +9,14 @@ public class ClientResponseDTO {
     private Long id;
     private String name;
     private String email;
-    private List<OrderResponseDTO> orders;
 
     public ClientResponseDTO() {
     }
 
-    public ClientResponseDTO(Long id, String name, String email, List<OrderResponseDTO> orders) {
+    public ClientResponseDTO(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.orders = orders;
-    }
-
-    public List<OrderResponseDTO> getOrders() {
-        return orders;
     }
 
     public Long getId() {
@@ -46,4 +42,5 @@ public class ClientResponseDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

@@ -4,10 +4,12 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Roupa;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Trabalho;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-public class Service {
+@Table(name = "tb_activities")
+public class Activity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,19 +22,19 @@ public class Service {
     private BigDecimal preco;
 
     @ManyToOne
-    @JoinColumn(name = "order-id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
-    public Service() {
+    public Activity() {
 
     }
 
-    public Service(Long id, Order order, BigDecimal preco, Roupa roupa, Trabalho trabalho) {
+    public Activity(Long id, Order order, BigDecimal preco, Roupa roupa, Trabalho trabalho) {
         this.id = id;
         this.order = order;
         this.preco = preco;
-        this.roupa = roupa.getCode();
-        this.trabalho = trabalho.getCode();
+        setRoupa(roupa);
+        setTrabalho(trabalho);
     }
 
     public Long getId() {

@@ -8,14 +8,25 @@ public class ClientMapper {
 
     public static Client toEntity(ClientCreatDTO clientDTO) {
         Client client = new Client();
+
         client.setName(clientDTO.getName());
         client.setEmail(clientDTO.getEmail());
+
         return client;
     }
 
     public static ClientResponseDTO toResponse(Client client) {;
         ClientResponseDTO clientResponseDTO = new ClientResponseDTO();
+
+        setClientDTO(clientResponseDTO, client);
+
         return clientResponseDTO;
+    }
+
+    private static void setClientDTO(ClientResponseDTO clientResponseDTO, Client client) {
+        clientResponseDTO.setId(client.getId());
+        clientResponseDTO.setName(client.getName());
+        clientResponseDTO.setEmail(client.getEmail());
     }
 
 }
