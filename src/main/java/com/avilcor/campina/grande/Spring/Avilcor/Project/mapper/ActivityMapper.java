@@ -4,7 +4,7 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.ActivityIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.service.ActivityService;
 
-public class ServiceMapper {
+public class ActivityMapper {
 
     public static Activity toEntity(ActivityIdDTO activityIdDTO) {
         ActivityService activityService = new ActivityService();

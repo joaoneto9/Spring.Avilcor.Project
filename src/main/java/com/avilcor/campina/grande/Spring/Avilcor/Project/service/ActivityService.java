@@ -4,7 +4,9 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.ActivityIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ActivityService {
 
     @Autowired
