@@ -13,9 +13,9 @@ public class ClientMapper {
         return client;
     }
 
-    public static ClientResponseDTO toResponse(Client client) {
-        return new ClientResponseDTO(client.getId(), client.getName(), client.getEmail(), client.getOrders().stream().map(x -> ));
-
-
+    public static ClientResponseDTO toResponse(Client client) {;
+        ClientResponseDTO clientResponseDTO = new ClientResponseDTO();
+        return clientResponseDTO;
     }
+
 }

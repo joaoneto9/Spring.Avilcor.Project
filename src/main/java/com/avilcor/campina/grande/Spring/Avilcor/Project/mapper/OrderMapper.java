@@ -5,8 +5,8 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.OrderResponseDTO;
 
 public class OrderMapper {
 
-    public static Order toEntity(OrderResponseDTO) {
-        Order order = new Order();
-
-    }
+//    public static Order toEntity(OrderResponseDTO) {
+//        Order order = new Order();
+//
+//    }
 }

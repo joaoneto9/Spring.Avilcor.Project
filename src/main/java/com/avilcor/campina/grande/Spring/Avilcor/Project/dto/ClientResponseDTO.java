@@ -9,6 +9,9 @@ public class ClientResponseDTO {
     private String email;
     private List<OrderResponseDTO> orders;
 
+    public ClientResponseDTO() {
+    }
+
     public ClientResponseDTO(Long id, String name, String email, List<OrderResponseDTO> orders) {
         this.id = id;
         this.name = name;

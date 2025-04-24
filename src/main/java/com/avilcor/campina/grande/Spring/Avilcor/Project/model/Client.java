@@ -1,5 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -10,12 +11,17 @@ import java.util.List;
 @Table(name = "tb_Client")
 public class Client {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String email;
+
+    @OneToMany
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     public Client() {
