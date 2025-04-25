@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 public class ActivityRequestDTO {
 
     @NotNull
-    private Integer roupa;
+    private Roupa roupa;
 
     @NotNull
-    private Integer trabalho;
+    private Trabalho trabalho;
 
     @NotNull
     private BigDecimal preco;
@@ -23,8 +23,8 @@ public class ActivityRequestDTO {
 
     public ActivityRequestDTO(BigDecimal preco, Roupa roupa, Trabalho trabalho) {
         this.preco = preco;
-        setRoupa(roupa);
-        setTrabalho(trabalho);
+        this.roupa = roupa;
+        this.trabalho = trabalho;
     }
 
     public BigDecimal getPreco() {
@@ -36,20 +36,18 @@ public class ActivityRequestDTO {
     }
 
     public Roupa getRoupa() {
-        return Roupa.valueOf(roupa);
+        return roupa;
     }
 
     public void setRoupa(Roupa roupa) {
-        if (roupa != null)
-            this.roupa = roupa.getCode();
+        this.roupa = roupa;
     }
 
     public Trabalho getTrabalho() {
-        return Trabalho.valueOf(trabalho);
+        return trabalho;
     }
 
     public void setTrabalho(Trabalho trabalho) {
-        if (trabalho != null)
-            this.trabalho = trabalho.getCode();
+        this.trabalho = trabalho;
     }
 }

@@ -3,7 +3,6 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.service;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ClientRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response.ClientResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.mapper.ClientMapper;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Client;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,5 +35,7 @@ public class ClientService {
 
         return ResponseEntity.ok().body(ClientMapper.toResponse(clientRepository.findByEmail(email).get()));
     }
+
+
 
 }

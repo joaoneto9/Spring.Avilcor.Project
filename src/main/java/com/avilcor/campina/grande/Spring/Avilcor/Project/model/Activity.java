@@ -17,21 +17,19 @@ public class Activity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer roupa;
-    private Integer trabalho;
-    private BigDecimal preco;
+    @Enumerated(EnumType.STRING)
+    private Roupa roupa;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Enumerated(EnumType.STRING)
+    private Trabalho trabalho;
+    private BigDecimal preco;
 
     public Activity() {
 
     }
 
-    public Activity(Long id, Order order, BigDecimal preco, Roupa roupa, Trabalho trabalho) {
+    public Activity(Long id, BigDecimal preco, Roupa roupa, Trabalho trabalho) {
         this.id = id;
-        this.order = order;
         this.preco = preco;
         setRoupa(roupa);
         setTrabalho(trabalho);
@@ -45,14 +43,6 @@ public class Activity implements Serializable {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public BigDecimal getPreco() {
         return preco;
     }
@@ -62,20 +52,18 @@ public class Activity implements Serializable {
     }
 
     public Roupa getRoupa() {
-        return Roupa.valueOf(roupa);
+        return roupa;
     }
 
     public void setRoupa(Roupa roupa) {
-        if (roupa != null)
-            this.roupa = roupa.getCode();
+        this.roupa = roupa;
     }
 
     public Trabalho getTrabalho() {
-        return Trabalho.valueOf(trabalho);
+        return trabalho;
     }
 
     public void setTrabalho(Trabalho trabalho) {
-        if (trabalho != null)
-            this.trabalho = trabalho.getCode();
+        this.trabalho = trabalho;
     }
 }

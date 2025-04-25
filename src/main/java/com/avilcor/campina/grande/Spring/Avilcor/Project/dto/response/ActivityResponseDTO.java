@@ -1,35 +1,55 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.ActivitySummaryDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.OrderSummaryDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Order;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Roupa;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Trabalho;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.List;
 
-public class ActivityResponseDTO extends ActivitySummaryDTO {
+public class ActivityResponseDTO {
 
-    private OrderSummaryDTO order;
+    private Long id;
+    private Roupa roupa;
+    private Trabalho trabalho;
+    private BigDecimal preco;
 
-    public ActivityResponseDTO() {
+    public ActivityResponseDTO() {}
 
+    public ActivityResponseDTO(Long id, BigDecimal preco, Roupa roupa, Trabalho trabalho) {
+        this.id = id;
+        this.preco = preco;
+        this.roupa = roupa;
+        this.trabalho = trabalho;
     }
 
-    public ActivityResponseDTO(OrderSummaryDTO order) {
-        this.order = order;
+    public Long getId() {
+        return id;
     }
 
-    public ActivityResponseDTO(Long id, BigDecimal preco, Integer roupaId, Integer trabalhoId, OrderSummaryDTO order) {
-        super(id, preco, roupaId, trabalhoId);
-        this.order = order;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public OrderSummaryDTO getOrderSummaryDTO() {
-        return order;
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setOrderSummaryDTO(OrderSummaryDTO order) {
-        this.order = order;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Roupa getRoupa() {
+        return roupa;
+    }
+
+    public void setRoupa(Roupa roupa) {
+        this.roupa = roupa;
+    }
+
+    public Trabalho getTrabalho() {
+        return trabalho;
+    }
+
+    public void setTrabalho(Trabalho trabalho) {
+        this.trabalho = trabalho;
     }
 }
