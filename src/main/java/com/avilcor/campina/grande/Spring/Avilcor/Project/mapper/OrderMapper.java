@@ -6,22 +6,24 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.OrderSummar
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Order;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.OrderSummaryDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.service.ActivityService;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class OrderMapper {
 
-    public static Order toEntity(OrderRequestDTO orderCreateDTO) {
+    public static Order toEntity(OrderRequestDTO orderCreateDTO, ActivityService activityService) {
         Order order = new Order();
 
-        setOrderEntity(orderCreateDTO, order);
+        setOrderEntity(orderCreateDTO, order, activityService);
 
         return order;
     }
 
-    private static void setOrderEntity(OrderRequestDTO orderCreateDTO, Order order) {
-        List<Activity> lista = orderCreateDTO.getServices().stream().map(ActivityMapper::toEntity).toList();
+    private static void setOrderEntity(OrderRequestDTO orderCreateDTO, Order order, ActivityService activityService) {
+
+        List<Activity> lista = orderCreateDTO.getActivities().stream().map(activityService::toEntity).toList();
 
         order.setClient(orderCreateDTO.getClient());
 

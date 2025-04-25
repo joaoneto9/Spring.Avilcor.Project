@@ -1,8 +1,5 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.math.BigDecimal;;
 import java.time.Instant;
@@ -24,8 +21,12 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany
-    @JsonIgnore
+    @ManyToMany // revisar
+    @JoinTable(
+            name = "order_activity", // nome da tabela de junção
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id")
+    )
     private List<Activity> services;
 
     private BigDecimal valorTotal;
@@ -84,13 +85,14 @@ public class Order implements Serializable {
 
     public void setDateBegin(Instant dateBegin) {
         this.dateBegin = dateBegin;
+        setDateFinish(dateBegin);
     }
 
     public Instant getDateFinish() {
         return dateFinish;
     }
 
-    public void setDateFinish(Instant dateFinish) {
-        this.dateFinish = dateFinish;
+    public void setDateFinish(Instant dateBegin) {
+        this.dateFinish = dateBegin.plus(10, ChronoUnit.DAYS);
     }
 }

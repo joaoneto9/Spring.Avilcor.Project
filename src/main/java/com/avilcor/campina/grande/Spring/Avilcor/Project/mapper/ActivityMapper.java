@@ -4,7 +4,9 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ActivityReq
 import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response.ActivityResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Activity;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.repository.ActivityRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.service.ActivityService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ActivityMapper {
 
@@ -20,12 +22,6 @@ public class ActivityMapper {
         activity.setPreco(activityRequestDTO.getPreco());
         activity.setRoupa(activityRequestDTO.getRoupa());
         activity.setTrabalho(activityRequestDTO.getTrabalho());
-    }
-
-    public static Activity toEntity(ActivityRequestIdDTO activityIdDTO) {
-        ActivityService activityService = new ActivityService();
-
-        return activityService.toEntity(activityIdDTO);
     }
 
     public static ActivityRequestIdDTO toRequestId(Activity service) {

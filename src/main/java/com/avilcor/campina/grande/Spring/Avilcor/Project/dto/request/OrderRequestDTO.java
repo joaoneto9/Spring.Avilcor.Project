@@ -10,15 +10,15 @@ public class OrderRequestDTO {
     @NotNull
     private Client client;
     @NotNull
-    private List<ActivityRequestIdDTO> services;
+    private List<ActivityRequestIdDTO> activities;
 
     public OrderRequestDTO() {
 
     }
 
-    public OrderRequestDTO(Client client, List<ActivityRequestIdDTO> services) {
+    public OrderRequestDTO(Client client, List<ActivityRequestIdDTO> activities) {
         this.client = client;
-        this.services = services;
+        this.activities = activities;
     }
 
     public Client getClient() {
@@ -29,11 +29,11 @@ public class OrderRequestDTO {
         this.client = client;
     }
 
-    public List<ActivityRequestIdDTO> getServices() {
-        return services;
+    public List<ActivityRequestIdDTO> getActivities() {
+        return activities;
     }
 
-    public void setServices(List<ActivityRequestIdDTO> services) {
-        this.services = services;
+    public void setActivities(List<ActivityRequestIdDTO> activities) {
+        this.activities = activities;
     }
 }
