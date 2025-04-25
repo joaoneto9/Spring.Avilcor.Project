@@ -1,46 +1,34 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.request.ActivityRequestIdDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.ClientSummaryDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.OrderSummaryDTO;
 
+import java.time.Instant;
 import java.util.List;
 
-public class OrderResponseDTO {
+public class OrderResponseDTO extends OrderSummaryDTO {
 
-    private Long id;
-    private List<ActivityRequestIdDTO> serviceIdDTOS;
-    private ClientResponseDTO clientResponseDTO;
+    private ClientSummaryDTO clientSummaryDTO;
 
     public OrderResponseDTO() {
 
     }
 
-    public OrderResponseDTO(ClientResponseDTO clientResponseDTO, Long id, List<ActivityRequestIdDTO> serviceIdDTOS) {
-        this.clientResponseDTO = clientResponseDTO;
-        this.id = id;
-        this.serviceIdDTOS = serviceIdDTOS;
+    public OrderResponseDTO(ClientSummaryDTO clientSummaryDTO) {
+        this.clientSummaryDTO = clientSummaryDTO;
     }
 
-    public ClientResponseDTO getClientResponseDTO() {
-        return clientResponseDTO;
+    public OrderResponseDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityRequestIdDTO> serviceIdDTOS, ClientSummaryDTO clientSummaryDTO) {
+        super(dateBegin, dateFinish, id, serviceIdDTOS);
+        this.clientSummaryDTO = clientSummaryDTO;
     }
 
-    public void setClientResponseDTO(ClientResponseDTO clientResponseDTO) {
-        this.clientResponseDTO = clientResponseDTO;
+    public ClientSummaryDTO getClientSummaryDTO() {
+        return clientSummaryDTO;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<ActivityRequestIdDTO> getServiceIdDTOS() {
-        return serviceIdDTOS;
-    }
-
-    public void setServiceIdDTOS(List<ActivityRequestIdDTO> serviceIdDTOS) {
-        this.serviceIdDTOS = serviceIdDTOS;
+    public void setClientSummaryDTO(ClientSummaryDTO clientSummaryDTO) {
+        this.clientSummaryDTO = clientSummaryDTO;
     }
 }

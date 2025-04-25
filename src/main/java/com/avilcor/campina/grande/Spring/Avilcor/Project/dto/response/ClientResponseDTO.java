@@ -1,42 +1,32 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response;
 
-public class ClientResponseDTO {
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.ClientSummaryDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.OrderSummaryDTO;
 
-    private Long id;
-    private String name;
-    private String email;
+import java.util.List;
+
+public class ClientResponseDTO extends ClientSummaryDTO {
+
+    private List<OrderSummaryDTO> orders;
 
     public ClientResponseDTO() {
+
     }
 
-    public ClientResponseDTO(Long id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+    public ClientResponseDTO(List<OrderSummaryDTO> orders) {
+        this.orders = orders;
     }
 
-    public Long getId() {
-        return id;
+    public ClientResponseDTO(Long id, String name, String email, List<OrderSummaryDTO> orders) {
+        super(id, name, email);
+        this.orders = orders;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public List<OrderSummaryDTO> getOrders() {
+        return orders;
     }
 
-    public String getName() {
-        return name;
+    public void setOrders(List<OrderSummaryDTO> orders) {
+        this.orders = orders;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 }

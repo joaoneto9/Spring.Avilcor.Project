@@ -24,9 +24,17 @@ public class ClientService {
 
     public ResponseEntity<String> save(ClientRequestDTO clientRequestDTO) {
         if (clientRepository.findByEmail(clientRequestDTO.getEmail()).isPresent())
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Client alredy exists");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Client alredy exists.");
 
         clientRepository.save(ClientMapper.toEntity(clientRequestDTO));
-        return ResponseEntity.status(HttpStatus.CREATED).body("Client has been created");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Client has been created.");
     }
+
+    public ResponseEntity<?> findByEmail(String email) {
+        if (clientRepository.findByEmail(email).isEmpty())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente com esse email nao encontrado.");
+
+        return ResponseEntity.ok().body(ClientMapper.toResponse(clientRepository.findByEmail(email).get()));
+    }
+
 }

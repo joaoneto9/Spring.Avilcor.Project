@@ -1,69 +1,35 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.dto.response;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Roupa;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.enums.Trabalho;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.ActivitySummaryDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.dto.summary.OrderSummaryDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.model.Order;
-import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
 
-public class ActivityResponseDTO {
+public class ActivityResponseDTO extends ActivitySummaryDTO {
 
-    private Long id;
-    private Roupa roupa;
-    private Trabalho trabalho;
-    private BigDecimal preco;
-    private Order order;
+    private OrderSummaryDTO order;
 
     public ActivityResponseDTO() {
+
     }
 
-    public ActivityResponseDTO(Long id, Order order, BigDecimal preco, Integer roupaId, Integer trabalhoId) {
-        this.id = id;
+    public ActivityResponseDTO(OrderSummaryDTO order) {
         this.order = order;
-        this.preco = preco;
-        setRoupa(roupaId);
-        setTrabalho(trabalhoId);
     }
 
-    public Long getId() {
-        return id;
+    public ActivityResponseDTO(Long id, BigDecimal preco, Integer roupaId, Integer trabalhoId, OrderSummaryDTO order) {
+        super(id, preco, roupaId, trabalhoId);
+        this.order = order;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Order getOrder() {
+    public OrderSummaryDTO getOrderSummaryDTO() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrderSummaryDTO(OrderSummaryDTO order) {
         this.order = order;
     }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public Roupa getRoupa() {
-        return roupa;
-    }
-
-    public Trabalho getTrabalho() {
-        return trabalho;
-    }
-
-    public void setRoupa(Integer code) throws IllegalArgumentException{
-        this.roupa = Roupa.valueOf(code);
-    }
-
-    public void setTrabalho(Integer code) {
-        this.trabalho = Trabalho.valueOf(code);
-    }
-
 }
