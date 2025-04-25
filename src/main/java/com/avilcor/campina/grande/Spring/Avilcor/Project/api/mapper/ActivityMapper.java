@@ -3,7 +3,7 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Activity;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 
 public class ActivityMapper {
 

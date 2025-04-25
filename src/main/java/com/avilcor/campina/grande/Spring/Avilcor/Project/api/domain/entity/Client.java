@@ -1,4 +1,4 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.api.model;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

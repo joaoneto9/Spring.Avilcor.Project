@@ -1,4 +1,4 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.api.model;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;;
@@ -23,7 +23,7 @@ public class Order implements Serializable {
 
     @ManyToMany // revisar
     @JoinTable(
-            name = "order_activity", // nome da tabela de junção
+            name = "tb_order_activity", // nome da tabela de junção
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id")
     )
@@ -69,6 +69,13 @@ public class Order implements Serializable {
 
     public void setServices(List<Activity> services) {
         this.services = services;
+    }
+
+    public void addActivity(Activity activity) {
+        if (!this.services.contains(activity)) {
+            this.services.add(activity);
+            this.valorTotal = this.valorTotal.add(activity.getPreco());
+        }
     }
 
     public BigDecimal getValorTotal() {

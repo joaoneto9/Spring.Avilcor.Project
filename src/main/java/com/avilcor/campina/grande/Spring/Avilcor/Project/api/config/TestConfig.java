@@ -1,9 +1,9 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.config;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Roupa;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Activity;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Client;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Order;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Order;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ActivityRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ClientRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.OrderRepository;

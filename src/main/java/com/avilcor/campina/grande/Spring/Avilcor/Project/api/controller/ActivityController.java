@@ -2,8 +2,11 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.ActivityMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +26,11 @@ public class ActivityController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        return activityService.findById(id);
+        Activity activity = activityService.findById(id);
+        if (activity == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Activity not found");
+
+        return  ResponseEntity.ok().body(ActivityMapper.toResponse(activity));
     }
 
     @PostMapping(value = "/send")

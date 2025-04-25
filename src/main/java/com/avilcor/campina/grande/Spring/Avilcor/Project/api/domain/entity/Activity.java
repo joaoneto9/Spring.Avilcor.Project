@@ -1,4 +1,4 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.api.model;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Roupa;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Trabalho;

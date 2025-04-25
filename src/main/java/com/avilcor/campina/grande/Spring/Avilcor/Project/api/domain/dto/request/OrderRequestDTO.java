@@ -1,6 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Client;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;

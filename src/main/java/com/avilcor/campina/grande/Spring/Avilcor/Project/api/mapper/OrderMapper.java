@@ -3,8 +3,8 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.OrderResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary.OrderSummaryDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Activity;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Order;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Order;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.ActivityService;
 
 import java.math.BigDecimal;

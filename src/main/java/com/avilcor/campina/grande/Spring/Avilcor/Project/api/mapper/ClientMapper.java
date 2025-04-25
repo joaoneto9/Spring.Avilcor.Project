@@ -3,7 +3,7 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ClientRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ClientResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary.ClientSummaryDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Client;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
 
 public class ClientMapper {
 

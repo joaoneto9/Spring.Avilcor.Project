@@ -1,6 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.model.Client;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

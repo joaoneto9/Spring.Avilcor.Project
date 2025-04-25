@@ -31,6 +31,11 @@ public class OrderController {
         return orderService.save(orderRequestDTO);
     }
 
+    @PutMapping
+    public ResponseEntity<?> addActivityToOrder() {
+        return null;
+    }
+
 
 
 
