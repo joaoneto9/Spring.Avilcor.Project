@@ -3,6 +3,7 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ClientRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ClientResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.ClientService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +28,9 @@ public class ClientController {
     }
 
     @PostMapping(value = "/send")
-    public ResponseEntity<?> save(@RequestBody ClientRequestDTO clientRequestDTO) {
+    public ResponseEntity<?> save(@RequestBody @Valid ClientRequestDTO clientRequestDTO) {
         return ResponseEntity.ok(clientService.save(clientRequestDTO));
     }
-
 
 
 }

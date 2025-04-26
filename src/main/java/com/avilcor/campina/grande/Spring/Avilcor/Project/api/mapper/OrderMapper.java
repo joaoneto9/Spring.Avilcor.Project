@@ -41,7 +41,8 @@ public class OrderMapper {
 
     private static void setOrderDTO(OrderSummaryDTO orderSummaryDTO, Order order) {
         orderSummaryDTO.setId(order.getId());
-        orderSummaryDTO.setServiceIdDTOS(order.getServices().stream().map(ActivityMapper::toRequestId).toList());
+        orderSummaryDTO.setActivities(order.getServices().stream().map(ActivityMapper::toResponse).toList());
+        orderSummaryDTO.setValorTotal(order.getValorTotal());
         orderSummaryDTO.setDateBegin(order.getDateBegin());
         orderSummaryDTO.setDateFinish(order.getDateFinish());
     }
@@ -50,7 +51,7 @@ public class OrderMapper {
         OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
 
         setOrderDTO(orderResponseDTO, order);
-        orderResponseDTO.setClientSummaryDTO(ClientMapper.toSummary(order.getClient()));
+        orderResponseDTO.setClient(ClientMapper.toSummary(order.getClient()));
 
         return orderResponseDTO;
 

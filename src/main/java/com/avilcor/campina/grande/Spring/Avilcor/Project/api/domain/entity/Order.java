@@ -35,7 +35,8 @@ public class Order implements Serializable {
     private Instant dateFinish;
 
     public Order() {
-
+        this.dateBegin = Instant.now();
+        this.dateFinish = dateBegin.plus(10, ChronoUnit.DAYS); // determina que e 10 dias depois do pedido
     }
 
     public Order(Long id, Client client, List<Activity> services, BigDecimal valorTotal) {
@@ -72,10 +73,8 @@ public class Order implements Serializable {
     }
 
     public void addActivity(Activity activity) {
-        if (!this.services.contains(activity)) {
-            this.services.add(activity);
-            this.valorTotal = this.valorTotal.add(activity.getPreco());
-        }
+        this.services.add(activity); // nao fazer verificacao se contem ou nao, ele pode fazer quantos ajustes quiser da mesma forma.
+        this.valorTotal = this.valorTotal.add(activity.getPreco()); // exemplo: ele pode ajustar duas calcas. MESMA ATIVIDADE...
     }
 
     public BigDecimal getValorTotal() {

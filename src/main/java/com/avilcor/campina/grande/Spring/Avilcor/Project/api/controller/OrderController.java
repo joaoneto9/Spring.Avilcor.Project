@@ -4,6 +4,7 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.OrderResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,19 +29,17 @@ public class OrderController {
     }
 
     @PostMapping(value = "/send")
-    public ResponseEntity<OrderResponseDTO> save(@RequestBody OrderRequestDTO orderRequestDTO) {
+    public ResponseEntity<OrderResponseDTO> save(@RequestBody @Valid OrderRequestDTO orderRequestDTO) {
         return ResponseEntity.ok(orderService.save(orderRequestDTO));
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<OrderResponseDTO> addActivityToOrder(
             @PathVariable Long id,
-            @RequestBody ActivityRequestIdDTO activityRequestIdDTO
+            @RequestBody @Valid ActivityRequestIdDTO activityRequestIdDTO
     ) {
         return ResponseEntity.ok(orderService.addActivityToOrder(activityRequestIdDTO, id));
     }
-
-
 
 
 }

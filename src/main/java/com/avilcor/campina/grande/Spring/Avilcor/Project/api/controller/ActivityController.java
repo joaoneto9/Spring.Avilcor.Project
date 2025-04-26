@@ -5,6 +5,7 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.ActivityMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.ActivityService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class ActivityController {
     }
 
     @PostMapping(value = "/send")
-    public ResponseEntity<ActivityResponseDTO> save(@RequestBody ActivityRequestDTO activityRequestDTO) {
+    public ResponseEntity<ActivityResponseDTO> save(@RequestBody @Valid ActivityRequestDTO activityRequestDTO) {
         return ResponseEntity.ok(activityService.save(activityRequestDTO));
     }
 

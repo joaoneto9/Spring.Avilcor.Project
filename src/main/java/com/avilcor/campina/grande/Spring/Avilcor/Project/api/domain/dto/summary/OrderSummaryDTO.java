@@ -1,7 +1,9 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
@@ -9,7 +11,10 @@ public class OrderSummaryDTO {
 
 
     private Long id;
-    private List<ActivityRequestIdDTO> serviceIdDTOS;
+
+    @JsonProperty("activities")
+    private List<ActivityResponseDTO> activities;
+    private BigDecimal valorTotal;
     private Instant dateBegin;
     private Instant dateFinish;
 
@@ -17,11 +22,12 @@ public class OrderSummaryDTO {
 
     }
 
-    public OrderSummaryDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityRequestIdDTO> serviceIdDTOS) {
+    public OrderSummaryDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityResponseDTO> activities, BigDecimal valorTotal) {
         this.dateBegin = dateBegin;
         this.dateFinish = dateFinish;
         this.id = id;
-        this.serviceIdDTOS = serviceIdDTOS;
+        this.activities = activities;
+        this.valorTotal = valorTotal;
     }
 
     public Long getId() {
@@ -32,12 +38,12 @@ public class OrderSummaryDTO {
         this.id = id;
     }
 
-    public List<ActivityRequestIdDTO> getServiceIdDTOS() {
-        return serviceIdDTOS;
+    public List<ActivityResponseDTO> getActivities() {
+        return activities;
     }
 
-    public void setServiceIdDTOS(List<ActivityRequestIdDTO> serviceIdDTOS) {
-        this.serviceIdDTOS = serviceIdDTOS;
+    public void setActivities(List<ActivityResponseDTO> activities) {
+        this.activities = activities;
     }
 
     public Instant getDateBegin() {
@@ -54,5 +60,13 @@ public class OrderSummaryDTO {
 
     public void setDateFinish(Instant dateFinish) {
         this.dateFinish = dateFinish;
+    }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 }

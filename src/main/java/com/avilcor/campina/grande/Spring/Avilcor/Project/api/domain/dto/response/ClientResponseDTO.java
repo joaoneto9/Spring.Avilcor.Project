@@ -2,11 +2,13 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.respons
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary.ClientSummaryDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary.OrderSummaryDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 public class ClientResponseDTO extends ClientSummaryDTO {
 
+    @JsonProperty("orders")
     private List<OrderSummaryDTO> orders;
 
     public ClientResponseDTO() {
