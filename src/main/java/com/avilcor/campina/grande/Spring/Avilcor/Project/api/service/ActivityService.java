@@ -3,16 +3,15 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.service;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Order;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.ConflictException;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.NotFoundException;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.ActivityMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ActivityRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,19 +32,20 @@ public class ActivityService {
         return activityRepository.findAll().stream().map(ActivityMapper::toResponse).toList();
     }
 
-    public Activity findById(Long id) {
-        if (activityRepository.findById(id).isEmpty())
-            return null;
-
-        return activityRepository.findById(id).get();
+    public ActivityResponseDTO findById(Long id) {
+        Optional<Activity> activity = activityRepository.findById(id);
+        return activity.map(ActivityMapper::toResponse).orElseThrow(() -> new NotFoundException("activity not found"));
     }
 
-    public ResponseEntity<?> save(ActivityRequestDTO activityRequestDTO) {
+    @Transactional
+    public ActivityResponseDTO save(ActivityRequestDTO activityRequestDTO) {
         if (activityRepository.findByRoupaAndTrabalho(activityRequestDTO.getRoupa(), activityRequestDTO.getTrabalho()).isPresent())
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Activity alredy Exist");
+            throw new ConflictException("Activity alredy exists");
 
-        activityRepository.save(ActivityMapper.toEntity(activityRequestDTO));
-        return ResponseEntity.status(HttpStatus.CREATED).body("Activity has been created");
+        Activity activity = ActivityMapper.toEntity(activityRequestDTO);
+        activityRepository.save(activity);
+        return ActivityMapper.toResponse(activity);
+
     }
 
 }

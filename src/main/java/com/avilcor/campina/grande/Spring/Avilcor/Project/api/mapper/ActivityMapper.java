@@ -25,7 +25,6 @@ public class ActivityMapper {
         ActivityRequestIdDTO serviceIdDTO = new ActivityRequestIdDTO();
 
         serviceIdDTO.setId(service.getId());
-
         return  serviceIdDTO;
     }
 

@@ -1,5 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller;
 
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.OrderResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.OrderService;
@@ -18,22 +19,25 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<OrderResponseDTO>> findAll() {
-        return ResponseEntity.ok().body(orderService.findAll());
+        return ResponseEntity.ok(orderService.findAll());
     }
 
     @GetMapping(value = "/{email}")
     public ResponseEntity<List<OrderResponseDTO>> findAllOrdersByClientEmail(@PathVariable String email) {
-        return ResponseEntity.ok().body(orderService.findAllOrdersByClientEmail(email));
+        return ResponseEntity.ok(orderService.findAllOrdersByClientEmail(email));
     }
 
     @PostMapping(value = "/send")
-    public ResponseEntity<String> save(@RequestBody OrderRequestDTO orderRequestDTO) {
-        return orderService.save(orderRequestDTO);
+    public ResponseEntity<OrderResponseDTO> save(@RequestBody OrderRequestDTO orderRequestDTO) {
+        return ResponseEntity.ok(orderService.save(orderRequestDTO));
     }
 
-    @PutMapping
-    public ResponseEntity<?> addActivityToOrder() {
-        return null;
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<OrderResponseDTO> addActivityToOrder(
+            @PathVariable Long id,
+            @RequestBody ActivityRequestIdDTO activityRequestIdDTO
+    ) {
+        return ResponseEntity.ok(orderService.addActivityToOrder(activityRequestIdDTO, id));
     }
 
 

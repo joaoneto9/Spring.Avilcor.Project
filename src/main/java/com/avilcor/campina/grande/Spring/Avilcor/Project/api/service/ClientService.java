@@ -2,14 +2,17 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.service;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ClientRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ClientResponseDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.ConflictException;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.NotFoundException;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.ClientMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ClientRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -21,19 +24,22 @@ public class ClientService {
         return clientRepository.findAll().stream().map(ClientMapper::toResponse).toList();
     }
 
-    public ResponseEntity<String> save(ClientRequestDTO clientRequestDTO) {
-        if (clientRepository.findByEmail(clientRequestDTO.getEmail()).isPresent())
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Client alredy exists.");
-
-        clientRepository.save(ClientMapper.toEntity(clientRequestDTO));
-        return ResponseEntity.status(HttpStatus.CREATED).body("Client has been created.");
+    public ClientResponseDTO findByEmail(String email) throws NotFoundException {
+        Optional<Client> client = clientRepository.findByEmail(email);
+        return client.map(ClientMapper::toResponse)
+                .orElseThrow(() -> new NotFoundException("client not found"));
     }
 
-    public ResponseEntity<?> findByEmail(String email) {
-        if (clientRepository.findByEmail(email).isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente com esse email nao encontrado.");
+    @Transactional
+    public ClientResponseDTO save(ClientRequestDTO clientRequestDTO) {
 
-        return ResponseEntity.ok().body(ClientMapper.toResponse(clientRepository.findByEmail(email).get()));
+        if (clientRepository.findByEmail(clientRequestDTO.getEmail()).isPresent())
+            throw new ConflictException("this client alredy exist");
+
+        Client client = ClientMapper.toEntity(clientRequestDTO);
+        clientRepository.save(client);
+        return ClientMapper.toResponse(client);
+
     }
 
 

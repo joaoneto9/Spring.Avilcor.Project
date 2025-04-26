@@ -25,17 +25,13 @@ public class ActivityController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id) {
-        Activity activity = activityService.findById(id);
-        if (activity == null)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Activity not found");
-
-        return  ResponseEntity.ok().body(ActivityMapper.toResponse(activity));
+    public ResponseEntity<ActivityResponseDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(activityService.findById(id));
     }
 
     @PostMapping(value = "/send")
-    public ResponseEntity<?> save(@RequestBody ActivityRequestDTO activityRequestDTO) {
-        return activityService.save(activityRequestDTO);
+    public ResponseEntity<ActivityResponseDTO> save(@RequestBody ActivityRequestDTO activityRequestDTO) {
+        return ResponseEntity.ok(activityService.save(activityRequestDTO));
     }
 
 }

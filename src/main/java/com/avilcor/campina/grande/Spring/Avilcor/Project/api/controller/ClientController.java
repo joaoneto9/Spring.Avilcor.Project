@@ -18,17 +18,17 @@ public class ClientController {
 
     @GetMapping
     public ResponseEntity<List<ClientResponseDTO>> findAll() {
-        return ResponseEntity.ok().body(clientService.findAll());
+        return ResponseEntity.ok(clientService.findAll());
     }
 
     @GetMapping(value = "/{email}")
     public ResponseEntity<?> findByEmail( @PathVariable String email) {
-        return clientService.findByEmail(email);
+        return ResponseEntity.ok(clientService.findByEmail(email));
     }
 
     @PostMapping(value = "/send")
-    public ResponseEntity<String> save(@RequestBody ClientRequestDTO clientRequestDTO) {
-        return clientService.save(clientRequestDTO);
+    public ResponseEntity<?> save(@RequestBody ClientRequestDTO clientRequestDTO) {
+        return ResponseEntity.ok(clientService.save(clientRequestDTO));
     }
 
 
