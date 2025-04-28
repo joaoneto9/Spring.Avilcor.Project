@@ -5,31 +5,30 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary.OrderSummaryDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Order;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ActivityRepository;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ClientRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.ActivityService;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.ClientService;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class OrderMapper {
 
-    public static Order toEntity(OrderRequestDTO orderCreateDTO, ActivityService activityService) {
+    public static Order toEntity(OrderRequestDTO orderRequestDTO, ClientService clientService, ActivityService activityService) {
         Order order = new Order();
 
-        setOrderEntity(orderCreateDTO, order, activityService);
+        order.setClient(clientService.findByEmail(orderRequestDTO.getClientEmail()));
+        order.setServices(orderRequestDTO.getActivities().stream()
+                .map(x -> activityService.findByRoupaAndTrabalho(x.getRoupa(), x.getTrabalho()))
+                .toList());
+        order.updateValue();
 
         return order;
     }
 
-    private static void setOrderEntity(OrderRequestDTO orderCreateDTO, Order order, ActivityService activityService) {
-
-        List<Activity> lista = orderCreateDTO.getActivities().stream().map(activityService::toEntity).toList();
-
-        order.setClient(orderCreateDTO.getClient());
-
-        order.setServices(lista);
-
-        order.setValorTotal(lista.stream().map(x -> x.getPreco()).reduce(BigDecimal.ZERO, BigDecimal::add));
-    }
 
     public static OrderSummaryDTO toSummary(Order order) {
         OrderSummaryDTO orderSummaryDTO = new OrderSummaryDTO();

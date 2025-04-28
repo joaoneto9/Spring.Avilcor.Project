@@ -1,10 +1,11 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.service;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.ConflictException;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.NotFoundException;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Roupa;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Trabalho;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.ActivityMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ActivityRepository;
@@ -21,20 +22,18 @@ public class ActivityService {
     @Autowired
     private ActivityRepository activityRepository;
 
-    public Activity toEntity(ActivityRequestIdDTO activityIdDTO) {
-        if (activityRepository.findById(activityIdDTO.getId()).isEmpty())
-            return null;
-
-        return activityRepository.findById(activityIdDTO.getId()).get();
+    public List<Activity> findAll() {
+        return activityRepository.findAll();
     }
 
-    public List<ActivityResponseDTO> findAll() {
-        return activityRepository.findAll().stream().map(ActivityMapper::toResponse).toList();
-    }
-
-    public ActivityResponseDTO findById(Long id) {
+    public Activity findById(Long id) {
         Optional<Activity> activity = activityRepository.findById(id);
-        return activity.map(ActivityMapper::toResponse).orElseThrow(() -> new NotFoundException("activity not found"));
+        return activity.orElseThrow(() -> new NotFoundException("activity not found"));
+    }
+
+    public Activity findByRoupaAndTrabalho(Roupa roupa, Trabalho trabalho) {
+        Optional<Activity> activity = activityRepository.findByRoupaAndTrabalho(roupa, trabalho);
+        return activity.orElseThrow(() -> new NotFoundException("activity not found"));
     }
 
     @Transactional

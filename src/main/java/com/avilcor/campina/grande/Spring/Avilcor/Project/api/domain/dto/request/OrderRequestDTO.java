@@ -1,6 +1,5 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
@@ -8,32 +7,32 @@ import java.util.List;
 public class OrderRequestDTO {
 
     @NotNull
-    private Client client;
+    private String clientEmail;
     @NotNull
-    private List<ActivityRequestIdDTO> activities;
+    private List<ActivityRequestDTO> activities;
 
     public OrderRequestDTO() {
 
     }
 
-    public OrderRequestDTO(Client client, List<ActivityRequestIdDTO> activities) {
-        this.client = client;
+    public OrderRequestDTO(String clientEmail, List<ActivityRequestDTO> activities) {
+        this.clientEmail = clientEmail;
         this.activities = activities;
     }
 
-    public Client getClient() {
-        return client;
+    public String getClientEmail() {
+        return clientEmail;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientEmail(String clientEmail) {
+        this.clientEmail = clientEmail;
     }
 
-    public List<ActivityRequestIdDTO> getActivities() {
+    public List<ActivityRequestDTO> getActivities() {
         return activities;
     }
 
-    public void setActivities(List<ActivityRequestIdDTO> activities) {
+    public void setActivities(List<ActivityRequestDTO> activities) {
         this.activities = activities;
     }
 }

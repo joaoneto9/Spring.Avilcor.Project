@@ -1,7 +1,7 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.service;
 
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.OrderResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
@@ -25,17 +25,20 @@ public class OrderService {
     @Autowired
     private ActivityService activityService;
 
-    public List<OrderResponseDTO> findAll() {
-        return orderRepository.findAll().stream().map(OrderMapper::toResponse).toList();
+    @Autowired
+    private ClientService clientService;
+
+    public List<Order> findAll() {
+        return orderRepository.findAll();
     }
 
-    public List<OrderResponseDTO> findAllOrdersByClientEmail(String email) {
-        return orderRepository.findByClientEmail(email).stream().map(OrderMapper::toResponse).toList();
+    public List<Order> findAllOrdersByClientEmail(String email) {
+        return orderRepository.findByClientEmail(email);
     }
 
     @Transactional
     public OrderResponseDTO save(OrderRequestDTO orderRequestDTO) {
-        Order order = OrderMapper.toEntity(orderRequestDTO, activityService);
+        Order order = OrderMapper.toEntity(orderRequestDTO, clientService, activityService);
 
         orderRepository.save(order);
 
@@ -43,13 +46,13 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderResponseDTO addActivityToOrder(ActivityRequestIdDTO activityRequestIdDTO, Long id) {
+    public OrderResponseDTO addActivityToOrder(ActivityRequestDTO activityRequestDTO, Long id) {
         Optional<Order> order = orderRepository.findById(id);
 
         if (order.isEmpty())
             throw new NotFoundException("order not found");
 
-        Activity activity = activityService.toEntity(activityRequestIdDTO);
+        Activity activity = activityService.findByRoupaAndTrabalho(activityRequestDTO.getRoupa(), activityRequestDTO.getTrabalho());
 
         if (activity == null)
             throw new NotFoundException("activity not found");

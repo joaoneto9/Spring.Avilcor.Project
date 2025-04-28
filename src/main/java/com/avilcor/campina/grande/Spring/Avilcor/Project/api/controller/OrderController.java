@@ -1,8 +1,9 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.OrderResponseDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.OrderMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<OrderResponseDTO>> findAll() {
-        return ResponseEntity.ok(orderService.findAll());
+        return ResponseEntity.ok(orderService.findAll().stream().map(OrderMapper::toResponse).toList());
     }
 
     @GetMapping(value = "/{email}")
     public ResponseEntity<List<OrderResponseDTO>> findAllOrdersByClientEmail(@PathVariable String email) {
-        return ResponseEntity.ok(orderService.findAllOrdersByClientEmail(email));
+        return ResponseEntity.ok(orderService.findAllOrdersByClientEmail(email).stream().map(OrderMapper::toResponse).toList());
     }
 
     @PostMapping(value = "/send")
@@ -36,9 +37,9 @@ public class OrderController {
     @PutMapping(value = "/{id}")
     public ResponseEntity<OrderResponseDTO> addActivityToOrder(
             @PathVariable Long id,
-            @RequestBody @Valid ActivityRequestIdDTO activityRequestIdDTO
+            @RequestBody @Valid ActivityRequestDTO activityRequestDTO
     ) {
-        return ResponseEntity.ok(orderService.addActivityToOrder(activityRequestIdDTO, id));
+        return ResponseEntity.ok(orderService.addActivityToOrder(activityRequestDTO, id));
     }
 
 

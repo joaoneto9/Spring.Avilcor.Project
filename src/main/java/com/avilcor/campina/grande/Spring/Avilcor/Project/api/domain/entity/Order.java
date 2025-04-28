@@ -36,7 +36,7 @@ public class Order implements Serializable {
 
     public Order() {
         this.dateBegin = Instant.now();
-        this.dateFinish = dateBegin.plus(10, ChronoUnit.DAYS); // determina que e 10 dias depois do pedido
+        this.dateFinish = dateBegin.plus(DAYS_FOR_ORDER, ChronoUnit.DAYS); // determina que e 10 dias depois do pedido
     }
 
     public Order(Long id, Client client, List<Activity> services, BigDecimal valorTotal) {
@@ -100,5 +100,9 @@ public class Order implements Serializable {
 
     public void setDateFinish(Instant dateBegin) {
         this.dateFinish = dateBegin.plus(10, ChronoUnit.DAYS);
+    }
+
+    public void updateValue() {
+        setValorTotal(services.stream().map(Activity::getPreco).reduce(BigDecimal.ZERO, BigDecimal::add));
     }
 }

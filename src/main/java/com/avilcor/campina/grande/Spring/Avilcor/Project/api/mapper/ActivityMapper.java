@@ -1,7 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.ActivityRequestIdDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 
@@ -21,19 +20,12 @@ public class ActivityMapper {
         activity.setTrabalho(activityRequestDTO.getTrabalho());
     }
 
-    public static ActivityRequestIdDTO toRequestId(Activity service) {
-        ActivityRequestIdDTO serviceIdDTO = new ActivityRequestIdDTO();
+    public static ActivityResponseDTO toResponse(Activity activity) {
+        ActivityResponseDTO activityResponseDTO = new ActivityResponseDTO();
 
-        serviceIdDTO.setId(service.getId());
-        return  serviceIdDTO;
-    }
+        setActivityDTO(activityResponseDTO, activity);
 
-    public static ActivityResponseDTO toSummary(Activity activity) {
-        ActivityResponseDTO activitySummaryDTO = new ActivityResponseDTO();
-
-        setActivityDTO(activitySummaryDTO, activity);
-
-        return activitySummaryDTO;
+        return activityResponseDTO;
     }
 
     private static void setActivityDTO(ActivityResponseDTO activitySummaryDTO, Activity activity) {
@@ -41,14 +33,6 @@ public class ActivityMapper {
         activitySummaryDTO.setPreco(activity.getPreco());
         activitySummaryDTO.setRoupa(activity.getRoupa());
         activitySummaryDTO.setTrabalho(activity.getTrabalho());
-    }
-
-    public static ActivityResponseDTO toResponse(Activity activity) {
-        ActivityResponseDTO activityResponseDTO = new ActivityResponseDTO();
-
-        setActivityDTO(activityResponseDTO, activity);
-
-        return activityResponseDTO;
     }
 
 }

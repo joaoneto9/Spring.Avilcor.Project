@@ -20,14 +20,13 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public List<ClientResponseDTO> findAll() {
-        return clientRepository.findAll().stream().map(ClientMapper::toResponse).toList();
+    public List<Client> findAll() {
+        return clientRepository.findAll();
     }
 
-    public ClientResponseDTO findByEmail(String email) throws NotFoundException {
+    public Client findByEmail(String email) throws NotFoundException {
         Optional<Client> client = clientRepository.findByEmail(email);
-        return client.map(ClientMapper::toResponse)
-                .orElseThrow(() -> new NotFoundException("client not found"));
+        return client.orElseThrow(() -> new NotFoundException("client not found"));
     }
 
     @Transactional
