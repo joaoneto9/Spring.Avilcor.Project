@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class OrderSummaryDTO {
@@ -15,16 +17,16 @@ public class OrderSummaryDTO {
     @JsonProperty("activities")
     private List<ActivityResponseDTO> activities;
     private BigDecimal valorTotal;
-    private Instant dateBegin;
-    private Instant dateFinish;
+    private String dateBegin;
+    private String dateFinish;
 
     public OrderSummaryDTO() {
 
     }
 
     public OrderSummaryDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityResponseDTO> activities, BigDecimal valorTotal) {
-        this.dateBegin = dateBegin;
-        this.dateFinish = dateFinish;
+        setDateBegin(dateBegin);
+        setDateFinish(dateFinish);
         this.id = id;
         this.activities = activities;
         this.valorTotal = valorTotal;
@@ -46,20 +48,28 @@ public class OrderSummaryDTO {
         this.activities = activities;
     }
 
-    public Instant getDateBegin() {
+    public String getDateBegin() {
         return dateBegin;
     }
 
     public void setDateBegin(Instant dateBegin) {
-        this.dateBegin = dateBegin;
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("dd/MM/yyyy HH:mm:ss") // formato padrao
+                .withZone(ZoneId.systemDefault()); // "Z" -> inglaterra
+
+        this.dateBegin = formatter.format(dateBegin);
     }
 
-    public Instant getDateFinish() {
+    public String getDateFinish() {
         return dateFinish;
     }
 
     public void setDateFinish(Instant dateFinish) {
-        this.dateFinish = dateFinish;
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("dd/MM/yyyy HH:mm:ss") // formato padrao
+                .withZone(ZoneId.systemDefault()); // "Z" -> inglaterra
+
+        this.dateFinish = formatter.format(dateFinish);
     }
 
     public BigDecimal getValorTotal() {
