@@ -24,11 +24,6 @@ public class OrderController {
         return ResponseEntity.ok(orderService.findAll().stream().map(OrderMapper::toResponse).toList());
     }
 
-    @GetMapping(value = "/{email}")
-    public ResponseEntity<List<OrderResponseDTO>> findAllOrdersByClientEmail(@PathVariable String email) {
-        return ResponseEntity.ok(orderService.findAllOrdersByClientEmail(email).stream().map(OrderMapper::toResponse).toList());
-    }
-
     @PostMapping(value = "/send")
     public ResponseEntity<OrderResponseDTO> save(@RequestBody @Valid OrderRequestDTO orderRequestDTO) {
         return ResponseEntity.ok(orderService.save(orderRequestDTO));

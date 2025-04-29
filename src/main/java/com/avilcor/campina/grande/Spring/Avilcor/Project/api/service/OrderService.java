@@ -32,10 +32,6 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public List<Order> findAllOrdersByClientEmail(String email) {
-        return orderRepository.findByClientEmail(email);
-    }
-
     @Transactional
     public OrderResponseDTO save(OrderRequestDTO orderRequestDTO) {
         Order order = OrderMapper.toEntity(orderRequestDTO, clientService, activityService);
