@@ -29,10 +29,14 @@ public class ClientController {
         return ResponseEntity.ok(ClientMapper.toResponse(clientService.findByEmail(email)));
     }
 
+    @GetMapping(value = "/autocomplete/{emailPrefix}")
+    public ResponseEntity<List<String>> autoCompleteEmailClient(@PathVariable String emailPrefix) {
+        return ResponseEntity.ok(clientService.autoCompleteEmail(emailPrefix));
+    }
+
     @PostMapping(value = "/send")
     public ResponseEntity<ClientResponseDTO> save(@RequestBody @Valid ClientRequestDTO clientRequestDTO) {
         return ResponseEntity.ok(clientService.save(clientRequestDTO));
     }
-
 
 }

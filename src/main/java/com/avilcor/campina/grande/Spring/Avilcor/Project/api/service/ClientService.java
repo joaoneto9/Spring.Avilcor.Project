@@ -41,6 +41,13 @@ public class ClientService {
 
     }
 
+    public List<String> autoCompleteEmail(String emailPrefix) {
+        List<Client> clients = clientRepository.findByEmailStartingWithIgnoreCase(emailPrefix); // busca similares ao que foi buscado
+        return clients.stream()
+                .map(Client::getEmail)
+                .toList();
+    }
+
 
 
 }
