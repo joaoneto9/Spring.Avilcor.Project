@@ -1,6 +1,7 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.summary;
 
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.ActivityResponseDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.StatusOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
@@ -19,12 +20,14 @@ public class OrderSummaryDTO {
     private BigDecimal valorTotal;
     private String dateBegin;
     private String dateFinish;
+    private StatusOrder statusOrder;
 
     public OrderSummaryDTO() {
 
     }
 
-    public OrderSummaryDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityResponseDTO> activities, BigDecimal valorTotal) {
+    public OrderSummaryDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityResponseDTO> activities, BigDecimal valorTotal, StatusOrder statusOrder) {
+        this.statusOrder = statusOrder;
         setDateBegin(dateBegin);
         setDateFinish(dateFinish);
         this.id = id;
@@ -78,5 +81,13 @@ public class OrderSummaryDTO {
 
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public StatusOrder getStatusOrder() {
+        return statusOrder;
+    }
+
+    public void setStatusOrder(StatusOrder statusOrder) {
+        this.statusOrder = statusOrder;
     }
 }

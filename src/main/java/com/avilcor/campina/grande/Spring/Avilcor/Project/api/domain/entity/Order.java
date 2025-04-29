@@ -1,4 +1,5 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.StatusOrder;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;;
@@ -33,6 +34,9 @@ public class Order implements Serializable {
 
     private Instant dateBegin;
     private Instant dateFinish;
+
+    @Enumerated(EnumType.STRING)
+    private StatusOrder statusOrder = StatusOrder.EM_ANDAMENTO;
 
     public Order() {
         this.dateBegin = Instant.now();
@@ -104,5 +108,17 @@ public class Order implements Serializable {
 
     public void updateValue() {
         setValorTotal(services.stream().map(Activity::getPreco).reduce(BigDecimal.ZERO, BigDecimal::add));
+    }
+
+    public StatusOrder getStatusOrder() {
+        return statusOrder;
+    }
+
+    public void setStatusOrderFinalizada() {
+        this.statusOrder = StatusOrder.FINALIZADA;
+    }
+
+    public void setStatusOrderEntregue() {
+        this.statusOrder = StatusOrder.ENTREGUE;
     }
 }

@@ -44,6 +44,7 @@ public class OrderMapper {
         orderSummaryDTO.setValorTotal(order.getValorTotal());
         orderSummaryDTO.setDateBegin(order.getDateBegin());
         orderSummaryDTO.setDateFinish(order.getDateFinish());
+        orderSummaryDTO.setStatusOrder(order.getStatusOrder());
     }
 
     public static OrderResponseDTO toResponse(Order order) {
