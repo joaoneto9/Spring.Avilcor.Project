@@ -50,7 +50,7 @@ public class OrderMapper {
         OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
 
         setOrderDTO(orderResponseDTO, order);
-        orderResponseDTO.setClient(ClientMapper.toSummary(order.getClient()));
+        orderResponseDTO.setClientEmail(order.getClient().getEmail());
 
         return orderResponseDTO;
 

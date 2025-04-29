@@ -10,27 +10,27 @@ import java.util.List;
 
 public class OrderResponseDTO extends OrderSummaryDTO {
 
-    @JsonProperty("client")
-    private ClientSummaryDTO client;
+    @JsonProperty("clientEmail")
+    private String clientEmail;
 
     public OrderResponseDTO() {
 
     }
 
-    public OrderResponseDTO(ClientSummaryDTO client) {
-        this.client = client;
+    public OrderResponseDTO(String clientEmail) {
+        this.clientEmail = clientEmail;
     }
 
-    public OrderResponseDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityResponseDTO> activities, ClientSummaryDTO client, BigDecimal valorTotal) {
+    public OrderResponseDTO(Instant dateBegin, Instant dateFinish, Long id, List<ActivityResponseDTO> activities, String clientEmail, BigDecimal valorTotal) {
         super(dateBegin, dateFinish, id, activities, valorTotal);
-        this.client = client;
+        this.clientEmail = clientEmail;
     }
 
-    public ClientSummaryDTO getClient() {
-        return client;
+    public String getClientEmail() {
+        return clientEmail;
     }
 
-    public void setClient(ClientSummaryDTO client) {
-        this.client = client;
+    public void setClientEmail(String clientEmail) {
+        this.clientEmail = clientEmail;
     }
 }
