@@ -1,8 +1,6 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.config;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Dressmaker;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.embeddable.OrderActivity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Roupa;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
@@ -11,7 +9,6 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.A
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ClientRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.DressmakerRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.OrderRepository;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.DressmakerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;

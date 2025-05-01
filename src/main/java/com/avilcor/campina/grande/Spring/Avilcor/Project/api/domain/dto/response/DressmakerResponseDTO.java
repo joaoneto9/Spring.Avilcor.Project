@@ -1,4 +1,8 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response;
+
+
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.OrderActivityDTO;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -8,14 +12,14 @@ public class DressmakerResponseDTO {
     private String name;
     private String cpf;
     private Integer maxQuantity;
-    private List<OrderActivityResponseDTO> ordersActivities;
+    private List<OrderActivityDTO> ordersActivities;
     private BigDecimal baseSalary;
 
     public  DressmakerResponseDTO() {
 
     }
 
-    public DressmakerResponseDTO(BigDecimal baseSalary, String cpf, Long id, Integer maxQuantity, String name, List<OrderActivityResponseDTO> ordersActivities) {
+    public DressmakerResponseDTO(BigDecimal baseSalary, String cpf, Long id, Integer maxQuantity, String name, List<OrderActivityDTO> ordersActivities) {
         this.baseSalary = baseSalary;
         this.cpf = cpf;
         this.id = id;
@@ -24,11 +28,11 @@ public class DressmakerResponseDTO {
         this.ordersActivities = ordersActivities;
     }
 
-    public List<OrderActivityResponseDTO> getOrderActivity() {
+    public List<OrderActivityDTO> getOrdersActivities() {
         return ordersActivities;
     }
 
-    public void setOrdersActivities(List<OrderActivityResponseDTO> ordersActivities) {
+    public void setOrdersActivities(List<OrderActivityDTO> ordersActivities) {
         this.ordersActivities = ordersActivities;
     }
 

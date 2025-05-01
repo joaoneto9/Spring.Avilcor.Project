@@ -1,9 +1,8 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper;
 
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.OrderActivityDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.DressmakerRequestDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderActivityRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.DressmakerResponseDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.OrderActivityResponseDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Dressmaker;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.embeddable.OrderActivity;
 
@@ -34,30 +33,23 @@ public class DressmakerMapper {
 
     private static void setToResponse(Dressmaker dressmaker, DressmakerResponseDTO dressmakerResponseDTO) {
         dressmakerResponseDTO.setId(dressmaker.getId());
-        dressmakerResponseDTO.setOrdersActivities(dressmaker.getOrdersActivities().stream().map(DressmakerMapper::toOrderActivityResponse).toList());
+        dressmakerResponseDTO.setOrdersActivities(dressmaker.getOrdersActivities().stream().map(DressmakerMapper::toOrderActivityDTO).toList());
         dressmakerResponseDTO.setCpf(dressmaker.getCpf());
         dressmakerResponseDTO.setBaseSalary(dressmaker.getBaseSalary());
         dressmakerResponseDTO.setMaxQuantity(dressmaker.getMaxQuantity());
         dressmakerResponseDTO.setName(dressmaker.getName());
     }
 
-    public static OrderActivityResponseDTO toOrderActivityResponse(OrderActivity orderActivity) {
-        OrderActivityResponseDTO orderActivityResponseDTO = new OrderActivityResponseDTO();
+    public static OrderActivityDTO toOrderActivityDTO(OrderActivity orderActivity) {
+        OrderActivityDTO orderActivityDTO = new OrderActivityDTO();
 
-        orderActivityResponseDTO.setActivityId(orderActivity.getActivityId());
-        orderActivityResponseDTO.setOrderId(orderActivity.getOrderId());
+        orderActivityDTO.setActivityId(orderActivity.getActivityId());
+        orderActivityDTO.setOrderId(orderActivity.getOrderId());
 
-        return orderActivityResponseDTO;
+        return orderActivityDTO;
     }
 
-    public static OrderActivity toEntityOrderActivity(OrderActivityRequestDTO orderActivityRequestDTO) {
-        OrderActivity orderActivity = new OrderActivity();
 
-        orderActivity.setActivityId(orderActivityRequestDTO.getActivityId());
-        orderActivity.setOrderId(orderActivityRequestDTO.getOrderId());
-
-        return orderActivity;
-    }
 
 
 }

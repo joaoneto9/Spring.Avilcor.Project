@@ -6,10 +6,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_costureira")
@@ -30,7 +27,7 @@ public class Dressmaker implements Serializable {
 
     @ElementCollection
     @CollectionTable(name = "order_activity", joinColumns = @JoinColumn(name = "costureira_id"))
-    private List<OrderActivity> ordersActivities = new ArrayList<>();
+    private final List<OrderActivity> ordersActivities = new ArrayList<>();
 
     private BigDecimal baseSalary;
 

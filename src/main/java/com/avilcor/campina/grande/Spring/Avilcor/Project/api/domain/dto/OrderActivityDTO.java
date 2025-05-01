@@ -1,15 +1,14 @@
-package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response;
+package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto;
 
-public class OrderActivityResponseDTO {
+public class OrderActivityDTO {
 
     private Long OrderId;
     private Long ActivityId;
 
-    public OrderActivityResponseDTO() {
-
+    public OrderActivityDTO() {
     }
 
-    public OrderActivityResponseDTO(Long activityId, Long orderId) {
+    public OrderActivityDTO(Long activityId, Long orderId) {
         ActivityId = activityId;
         OrderId = orderId;
     }
@@ -18,12 +17,12 @@ public class OrderActivityResponseDTO {
         return ActivityId;
     }
 
-    public void setActivityId(Long activityId) {
-        ActivityId = activityId;
-    }
-
     public Long getOrderId() {
         return OrderId;
+    }
+
+    public void setActivityId(Long activityId) {
+        ActivityId = activityId;
     }
 
     public void setOrderId(Long orderId) {
