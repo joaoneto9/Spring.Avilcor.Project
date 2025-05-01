@@ -19,6 +19,8 @@ public class Client implements Serializable {
     private Long id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
 
     @OneToMany(mappedBy = "client")

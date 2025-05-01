@@ -1,9 +1,7 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller;
 
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.OrderActivityDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.DressmakerRequestDTO;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response.DressmakerResponseDTO;
-import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Dressmaker;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.embeddable.OrderActivity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.DressmakerMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.service.DressmakerService;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping(value = "/dressmakers")
 public class DressmakerController {

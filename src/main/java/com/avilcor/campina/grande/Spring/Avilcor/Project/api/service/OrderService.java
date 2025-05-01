@@ -33,6 +33,11 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public Order findById(Long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("order not found"));
+    }
+
     @Transactional
     public OrderResponseDTO save(OrderRequestDTO orderRequestDTO) {
         Order order = OrderMapper.toEntity(orderRequestDTO, clientService, activityService);

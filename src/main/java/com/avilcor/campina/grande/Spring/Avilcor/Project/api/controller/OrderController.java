@@ -25,6 +25,11 @@ public class OrderController {
         return ResponseEntity.ok(orderService.findAll().stream().map(OrderMapper::toResponse).toList());
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<OrderResponseDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(OrderMapper.toResponse(orderService.findById(id)));
+    }
+
     @PostMapping(value = "/send")
     public ResponseEntity<OrderResponseDTO> save(@RequestBody @Valid OrderRequestDTO orderRequestDTO) {
         return ResponseEntity.ok(orderService.save(orderRequestDTO));
