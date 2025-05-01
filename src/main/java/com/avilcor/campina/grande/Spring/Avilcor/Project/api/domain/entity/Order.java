@@ -2,7 +2,7 @@ package com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.StatusOrder;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;

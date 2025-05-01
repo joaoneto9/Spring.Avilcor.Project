@@ -1,12 +1,17 @@
 package com.avilcor.campina.grande.Spring.Avilcor.Project.api.config;
 
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.request.OrderActivityRequestDTO;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Dressmaker;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.embeddable.OrderActivity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.Roupa;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Client;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Order;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ActivityRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.ClientRepository;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.DressmakerRepository;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.OrderRepository;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.DressmakerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +32,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ActivityRepository activityRepository;
+
+    @Autowired
+    private DressmakerRepository dressmakerRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -49,5 +57,11 @@ public class TestConfig implements CommandLineRunner {
         order3.setStatusOrderEntregue(); // unico que tem status de Entregue para poder finalizar
 
         orderRepository.saveAll(List.of(order1, order2, order3));
+
+        Dressmaker dressmaker1 = new Dressmaker(new BigDecimal("1500.00"), "12345678901", null, 5, "Maria Silva");
+        Dressmaker dressmaker2 = new Dressmaker(new BigDecimal("2000.00"), "23456789012", null, 3, "João Souza");
+
+        dressmakerRepository.save(dressmaker1);
+        dressmakerRepository.save(dressmaker2);
     }
 }
