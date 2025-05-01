@@ -45,7 +45,9 @@ public class TestConfig implements CommandLineRunner {
 
         Order order1 = new Order(null, client1, List.of(activity1, activity2), new BigDecimal("130.00"));
         Order order2 = new Order(null, client2, List.of(activity3), new BigDecimal("100.00"));
+        Order order3 = new Order(null, client2, List.of(activity3), new BigDecimal("100.00"));
+        order3.setStatusOrderEntregue(); // unico que tem status de Entregue para poder finalizar
 
-        orderRepository.saveAll(List.of(order1, order2));
+        orderRepository.saveAll(List.of(order1, order2, order3));
     }
 }

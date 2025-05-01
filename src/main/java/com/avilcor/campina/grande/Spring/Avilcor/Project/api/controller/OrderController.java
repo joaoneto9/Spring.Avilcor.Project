@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(value = "*") // para teste
 @RestController
 @RequestMapping(value = "/orders")
 public class OrderController {
@@ -35,6 +36,11 @@ public class OrderController {
             @RequestBody @Valid ActivityRequestDTO activityRequestDTO
     ) {
         return ResponseEntity.ok(orderService.addActivityToOrder(activityRequestDTO, id));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<List<OrderResponseDTO>> deleteAllOrdersDelivered() {
+        return ResponseEntity.ok(orderService.deleteAllDelivered());
     }
 
 

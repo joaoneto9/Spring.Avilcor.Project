@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(value = "*") // para teste
 @RestController
 @RequestMapping(value = "/activities")
 public class ActivityController {

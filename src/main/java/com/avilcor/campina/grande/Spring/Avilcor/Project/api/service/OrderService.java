@@ -7,6 +7,7 @@ import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.dto.response
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Activity;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.entity.Order;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.controller.exception.NotFoundException;
+import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.enums.StatusOrder;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.mapper.OrderMapper;
 import com.avilcor.campina.grande.Spring.Avilcor.Project.api.domain.repository.OrderRepository;
 import jakarta.transaction.Transactional;
@@ -58,4 +59,14 @@ public class OrderService {
 
         return OrderMapper.toResponse(order.get());
     }
+
+    @Transactional
+    public List<OrderResponseDTO> deleteAllDelivered() {
+        List<Order> ordersDelivered = orderRepository.findAllByStatusOrder(StatusOrder.ENTREGUE);
+
+        orderRepository.deleteAll(ordersDelivered);
+
+        return ordersDelivered.stream().map(OrderMapper::toResponse).toList();
+    }
+
 }
